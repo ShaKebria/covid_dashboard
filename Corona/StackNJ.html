@@ -1,0 +1,256 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script>
+        window.onload = function() {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "dark2", //"light2", "dark1", "light1"
+                title: {
+                    text: "NJ County COVID-19 Confirmed, Recovered and Deaths "
+                },
+                axisY: {
+                    interval: 10,
+                    suffix: "%"
+                },
+                axisX: {
+                    interval: 1,
+                    labelFontSize: 14
+                },
+                toolTip: {
+                    shared: true
+                },
+                data: [{
+                    type: "stackedBar100",
+                    toolTipContent: "{label}<br><b>{name}:</b> {y} (#percent%)",
+                    showInLegend: true,
+                    name: "Confirmed",
+                    dataPoints: [{
+                        y: 10426,
+                        label: "Bergen County"
+                    }, {
+                        y: 8242,
+                        label: "Hudson County"
+                    }, {
+                        y: 8212,
+                        label: "Essex County"
+                    }, {
+                        y: 7265,
+                        label: "Union County"
+                    }, {
+                        y: 6438,
+                        label: "Passaic County"
+                    }, {
+                        y: 6313,
+                        label: "Middlesex County"
+                    }, {
+                        y: 4003,
+                        label: "Monmouth County"
+                    }, {
+                        y: 3833,
+                        label: "Ocean County"
+                    }, {
+                        y: 3424,
+                        label: "Morris County"
+                    }, {
+                        y: 1911,
+                        label: "Somerset County"
+                    }, {
+                        y: 1731,
+                        label: "Mercer County"
+                    }, {
+                        y: 1477,
+                        label: "Camden County"
+                    }, {
+                        y: 1207,
+                        label: "Burlington County"
+                    }, {
+                        y: 587,
+                        label: "Gloucester County"
+                    }, {
+                        y: 535,
+                        label: "Sussex County"
+                    }, {
+                        y: 442,
+                        label: "Warren County"
+                    }, {
+                        y: 349,
+                        label: "Hunterdon County"
+                    }, {
+                        y: 284,
+                        label: "Atlantic County"
+                    }, {
+                        y: 201,
+                        label: "Cumberland County"
+                    }, {
+                        y: 169,
+                        label: "Cape May County"
+                    }, {
+                        y: 73,
+                        label: "Salem County"
+                    }]
+                }, {
+                    type: "stackedBar100",
+                    toolTipContent: "<b>{name}:</b> {y} (#percent%)",
+                    showInLegend: true,
+                    name: "Recovered",
+                    dataPoints: [{
+                            y: 2,
+                            label: "Bergen County"
+                        }, {
+                            y: 129,
+                            label: "Hudson County"
+                        }, {
+                            y: 22,
+                            label: "Essex County"
+                        }, {
+                            y: 55,
+                            label: "Union County"
+                        }, {
+                            y: 100,
+                            label: "Passaic County"
+                        }, {
+                            y: 0,
+                            label: "Middlesex County"
+                        }, {
+                            y: 1,
+                            label: "Monmouth County"
+                        }, {
+                            y: 0,
+                            label: "Ocean County"
+                        }, {
+                            y: 19,
+                            label: "Morris County"
+                        }, {
+                            y: 0,
+                            label: "Somerset County"
+                        }, {
+                            y: 24,
+                            label: "Mercer County"
+                        }, {
+                            y: 700,
+                            label: "Camden County"
+                        }, {
+                            y: 52,
+                            label: "Burlington County"
+                        }, {
+                            y: 0,
+                            label: "Gloucester County"
+                        }, {
+                            y: 0,
+                            label: "Sussex County"
+                        }, {
+                            y: 41,
+                            label: "Warren County"
+                        }, {
+                            y: 1,
+                            label: "Hunterdon County"
+                        }, {
+                            y: 26,
+                            label: "Atlantic County"
+                        }, {
+                            y: 0,
+                            label: "Cumberland County"
+                        }, {
+                            y: 17,
+                            label: "Cape May County"
+                        }, {
+                            y: 0,
+                            label: "Salem County"
+                        }
+
+                    ]
+                }, {
+                    type: "stackedBar100",
+                    toolTipContent: "<b>{name}:</b> {y} (#percent%)",
+                    showInLegend: true,
+                    name: "Deaths",
+                    dataPoints: [{
+                            y: 550,
+                            label: "Bergen County"
+                        }, {
+                            y: 277,
+                            label: "Hudson County"
+                        }, {
+                            y: 535,
+                            label: "Essex County"
+                        }, {
+                            y: 238,
+                            label: "Union County"
+                        }, {
+                            y: 156,
+                            label: "Passaic County"
+                        }, {
+                            y: 216,
+                            label: "Middlesex County"
+                        }, {
+                            y: 145,
+                            label: "Monmouth County"
+                        }, {
+                            y: 149,
+                            label: "Ocean County"
+                        }, {
+                            y: 192,
+                            label: "Morris County"
+                        }, {
+                            y: 91,
+                            label: "Somerset County"
+                        }, {
+                            y: 71,
+                            label: "Mercer County"
+                        }, {
+                            y: 41,
+                            label: "Camden County"
+                        }, {
+                            y: 28,
+                            label: "Burlington County"
+                        }, {
+                            y: 11,
+                            label: "Gloucester County"
+                        }, {
+                            y: 39,
+                            label: "Sussex County"
+                        }, {
+                            y: 25,
+                            label: "Warren County"
+                        }, {
+                            y: 11,
+                            label: "Hunterdon County"
+                        }, {
+                            y: 11,
+                            label: "Atlantic County"
+                        }, {
+                            y: 3,
+                            label: "Cumberland County"
+                        }, {
+                            y: 10,
+                            label: "Cape May County"
+                        }, {
+                            y: 4,
+                            label: "Salem County"
+                        }
+
+                    ]
+                }]
+            });
+            chart.render();
+
+        }
+    </script>
+</head>
+
+<body>
+    <div align="center">
+        <h1>
+            <hr><a href="Main Page.html">Home</a>
+            <hr>
+        </h1>
+    </div>
+
+    <div id="chartContainer" style="height: 680px; width: 90%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+
+</html>

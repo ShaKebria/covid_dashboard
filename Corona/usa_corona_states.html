@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Google GeoChart</title>
+    <!---- >
+    https://developers.google.com/chart/interactive/docs/gallery/geochart#full
+    <!---->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['geochart']
+        });
+        google.charts.setOnLoadCallback(drawRegionsMap);
+
+        function drawRegionsMap() {
+            //2020 USA COVID-19 Data for total cases, total deaths, active cases 
+            // As of 04/18/2020: this data was taken from:
+            //https://www.worldometers.info/coronavirus/country/us/
+            var statedata = [{
+                "measure": "total cases",
+                "alabama": 4572,
+                "alaska": 309,
+                "arizona": 4507,
+                "arkansas": 1739,
+                "california": 29580,
+                "colorado": 9047,
+                "connecticut": 16809,
+                "delaware": 2323,
+                "districtofcolumbia": 2666,
+                "florida": 25269,
+                "georgia": 17669,
+                "hawaii": 553,
+                "idaho": 1655,
+                "illinois": 27575,
+                "indiana": 10641,
+                "iowa": 2513,
+                "kansas": 1705,
+                "kentucky": 2522,
+                "louisiana": 23580,
+                "maine": 827,
+                "maryland": 12308,
+                "massachusetts": 34402,
+                "michigan": 30023,
+                "minnesota": 2213,
+                "mississippi": 3974,
+                "missouri": 5283,
+                "montana": 426,
+                "nebraska": 1138,
+                "nevada": 3626,
+                "newhampshire": 1287,
+                "newjersey": 81420,
+                "newmexico": 1711,
+                "newyork": 241041,
+                "northcarolina": 6310,
+                "northdakota": 528,
+                "ohio": 9107,
+                "oklahoma": 2465,
+                "oregon": 1785,
+                "pennsylvania": 31069,
+                "rhodeisland": 4491,
+                "southcarolina": 4086,
+                "southdakota": 1542,
+                "tennessee": 6589,
+                "texas": 18260,
+                "utah": 2805,
+                "vermont": 803,
+                "virginia": 8053,
+                "washington": 11445,
+                "westvirginia": 785,
+                "wisconsin": 4045,
+                "wyoming": 412
+
+            }, {
+                "measure": "total deaths",
+                "alabama": 154,
+                "alaska": 9,
+                "arizona": 169,
+                "arkansas": 38,
+                "california": 1057,
+                "colorado": 391,
+                "connecticut": 1036,
+                "delaware": 61,
+                "districtofcolumbia": 91,
+                "florida": 740,
+                "georgia": 673,
+                "hawaii": 9,
+                "idaho": 43,
+                "illinois": 1134,
+                "indiana": 545,
+                "iowa": 74,
+                "kansas": 84,
+                "kentucky": 137,
+                "louisiana": 1267,
+                "maine": 29,
+                "maryland": 463,
+                "massachusetts": 1404,
+                "michigan": 2227,
+                "minnesota": 121,
+                "mississippi": 152,
+                "missouri": 182,
+                "montana": 10,
+                "nebraska": 24,
+                "nevada": 151,
+                "newhampshire": 37,
+                "newjersey": 4070,
+                "newmexico": 51,
+                "newyork": 17671,
+                "northcarolina": 173,
+                "northdakota": 9,
+                "ohio": 418,
+                "oklahoma": 136,
+                "oregon": 70,
+                "pennsylvania": 957,
+                "rhodeisland": 137,
+                "southcarolina": 116,
+                "southdakota": 7,
+                "tennessee": 142,
+                "texas": 453,
+                "utah": 23,
+                "vermont": 38,
+                "virginia": 258,
+                "washington": 603,
+                "westvirginia": 16,
+                "wisconsin": 205,
+                "wyoming": 2
+            }, {
+                "measure": "active cases",
+                "alabama": 4398,
+                "alaska": 172,
+                "arizona": 4268,
+                "arkansas": 998,
+                "california": 27173,
+                "colorado": 8158,
+                "connecticut": 15708,
+                "delaware": 1839,
+                "districtofcolumbia": 1967,
+                "florida": 23843,
+                "georgia": 16965,
+                "hawaii": 154,
+                "idaho": 1159,
+                "illinois": 26391,
+                "indiana": 10082,
+                "iowa": 1432,
+                "kansas": 1381,
+                "kentucky": 2079,
+                "louisiana": 22263,
+                "maine": 446,
+                "maryland": 11074,
+                "massachusetts": 24880,
+                "michigan": 27353,
+                "minnesota": 974,
+                "mississippi": 3822,
+                "missouri": 4917,
+                "montana": 173,
+                "nebraska": 1092,
+                "nevada": 2306,
+                "newhampshire": 782,
+                "newjersey": 76079,
+                "newmexico": 1365,
+                "newyork": 199483,
+                "northcarolina": 5254,
+                "northdakota": 336,
+                "ohio": 8569,
+                "oklahoma": 1174,
+                "oregon": 1715,
+                "pennsylvania": 29462,
+                "rhodeisland": 4344,
+                "southcarolina": 1232,
+                "southdakota": 983,
+                "tennessee": 3430,
+                "texas": 13617,
+                "utah": 2339,
+                "vermont": 765,
+                "virginia": 6685,
+                "washington": 9127,
+                "westvirginia": 544,
+                "wisconsin": 3753,
+                "wyoming": 204
+            }];
+
+            //select thedropdown element
+            select = document.getElementById("thedropdown");
+
+            //get the value of dropdown
+            selection = select.value;
+
+            //get the text from the dropdown for the chart
+            selectiontext = select.options[select.selectedIndex];
+
+            //go json and find proper measure, assign values to each state variable
+            for (i = 0; i < statedata.length; i++) {
+                if (selection == statedata[i].measure) {
+
+
+                    //this draws the chart
+                    var data = google.visualization.arrayToDataTable([
+                        ['State', selectiontext],
+                        ["Alaska", statedata[i].alaska],
+                        ["Alabama", statedata[i].alabama],
+                        ["Arkansas", statedata[i].arkansas],
+                        ["Arizona", statedata[i].arizona],
+                        ["California", statedata[i].california],
+                        ["Colorado", statedata[i].colorado],
+                        ["Connecticut", statedata[i].connecticut],
+                        ["Delaware", statedata[i].delaware],
+                        ["Florida", statedata[i].florida],
+                        ["Georgia", statedata[i].georgia],
+                        ["Hawaii", statedata[i].hawaii],
+                        ["Iowa", statedata[i].iowa],
+                        ["Idaho", statedata[i].idaho],
+                        ["Illinois", statedata[i].illinois],
+                        ["Indiana", statedata[i].indiana],
+                        ["Kansas", statedata[i].kansas],
+                        ["Kentucky", statedata[i].kentucky],
+                        ["Louisiana", statedata[i].louisiana],
+                        ["Massachusetts", statedata[i].massachusetts],
+                        ["Maryland", statedata[i].maryland],
+                        ["Maine", statedata[i].maine],
+                        ["Michigan", statedata[i].michigan],
+                        ["Minnesota", statedata[i].minnesota],
+                        ["Missouri", statedata[i].missouri],
+                        ["Mississippi", statedata[i].mississippi],
+                        ["Montana", statedata[i].montana],
+                        ["North Carolina", statedata[i].northcarolina],
+                        ["North Dakota", statedata[i].northdakota],
+                        ["Nebraska", statedata[i].nebraska],
+                        ["New Hampshire", statedata[i].newhampshire],
+                        ["New Jersey", statedata[i].newjersey],
+                        ["New Mexico", statedata[i].newmexico],
+                        ["Nevada", statedata[i].nevada],
+                        ["New York", statedata[i].newyork],
+                        ["Ohio", statedata[i].ohio],
+                        ["Oklahoma", statedata[i].oklahoma],
+                        ["Oregon", statedata[i].oregon],
+                        ["Pennsylvania", statedata[i].pennsylvania],
+                        ["Rhode Island", statedata[i].rhodeisland],
+                        ["South Carolina", statedata[i].southcarolina],
+                        ["South Dakota", statedata[i].southdakota],
+                        ["Tennessee", statedata[i].tennessee],
+                        ["Texas", statedata[i].texas],
+                        ["Utah", statedata[i].utah],
+                        ["Virginia", statedata[i].virginia],
+                        ["Vermont", statedata[i].vermont],
+                        ["Washington", statedata[i].washington],
+                        ["Wisconsin", statedata[i].wisconsin],
+                        ["West Virginia", statedata[i].westvirginia],
+                        ["Wyoming", statedata[i].wyoming]
+                    ]);
+                } // end if
+            } // end for
+
+            var options = {
+                region: 'US',
+                displayMode: 'regions',
+                resolution: 'provinces',
+                colorAxis: {
+                    colors: ['lightyellow', 'orange', '#ff6600', 'red']
+                },
+                colors: ['lightyellow', 'orange', '#ff6600', 'red'],
+            };
+
+            var chart = new google.visualization.GeoChart(document.getElementById('geochart'));
+            chart.draw(data, options);
+
+            var options = {
+                displayMode: 'text'
+            };
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <div align="center">
+        <h1>
+            <hr>
+            <a href="Main Page.html">Home</a>
+            <hr>
+        </h1>
+    </div>
+    <h1 align="center">
+        <font size="28">2020 United States COVID-19 Cases</font>
+    </h1>
+    <form id="form1" style="margin-left:950px;" onchange="drawRegionsMap()">
+        <select id="thedropdown">
+<option value="total cases">Total Cases</option>
+<option value="total deaths">Total Deaths</option>
+<option value="active cases">Active Cases</option>
+</select>
+
+    </form>
+    <div id="geochart" width="100%" height="100%"></div>
+    <h3 align="right"><i>
+	2020 USA COVID-19 Data for total cases, total deaths, active cases 
+    As of 04/18/2020: this data was taken from:
+    https://www.worldometers.info/coronavirus/country/us/</i></h3>
+
+</body>
+
+</html>

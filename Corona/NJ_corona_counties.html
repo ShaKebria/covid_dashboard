@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawSeriesChart);
+
+        function drawSeriesChart() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['ID', 'Confirmed Cases', 'Fatality Rate', 'Region', 'Population'],
+                ['AT', 370, 4.59, 'South Jersey', 265429],
+                ['CM', 189, 7.41, 'South Jersey', 92560],
+                ['CU', 263, 1.14, 'South Jersey', 150972],
+                ['SA', 102, 3.92, 'South Jersey', 62607],
+                ['GL', 664, 3.31, 'South Jersey', 291408],
+                ['CAM', 1807, 3.54, 'South Jersey', 507078],
+                ['BU', 1366, 3.95, 'South Jersey', 445384],
+                ['OC', 4424, 4.54, 'Center Jersey', 601651],
+                ['MON', 4414, 4.67, 'Center Jersey', 621354],
+                ['MI', 7308, 4.23, 'Center Jersey', 829685],
+                ['ME', 2123, 4.76, 'Center Jersey', 369811],
+                ['HUN', 385, 4.16, 'Center Jersey', 124714],
+                ['SO', 2195, 6.15, 'Center Jersey', 331164],
+                ['UN', 8429, 3.92, 'Center Jersey', 558067],
+                ['SU', 591, 9.14, 'North Jersey', 140799],
+                ['PA', 7604, 2.91, 'North Jersey', 503310],
+                ['WA', 521, 6.91, 'North Jersey', 105779],
+                ['MOR', 3822, 6.07, 'North Jersey', 494228],
+                ['ES', 9672, 7.07, 'North Jersey', 799767],
+                ['BE', 11863, 6.02, 'North Jersey', 936692],
+                ['HUD', 9636, 4.36, 'North Jersey', 676061]
+            ]);
+
+            var options = {
+                title: 'NJ COVID-19 2020 Correlation bet. confirmed cases, fatality rate and population',
+                hAxis: {
+                    title: 'Confirmed Cases'
+                },
+                vAxis: {
+                    title: 'Fatality Rate'
+                },
+                bubble: {
+                    textStyle: {
+                        fontSize: 8
+                    }
+                }
+            };
+
+            var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+    <div align="center">
+        <h1>
+            <hr><a href="Main Page.html">Home</a>
+            <hr>
+        </h1>
+    </div>
+
+    <div id="series_chart_div" style="width: 1200px; height: 700px;"></div>
+</body>
+
+</html>

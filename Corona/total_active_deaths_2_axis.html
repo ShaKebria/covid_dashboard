@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        window.onload = function() {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                exportEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "COVID-19 Active Cases & Total Deaths By States"
+                },
+                subtitles: [{
+                    text: "Click on Legend to Hide or Unhide Active Cases or Deaths"
+                }],
+                axisX: {
+                    title: "States",
+					  interval: 1,
+                },
+                axisY: {
+                    title: "Active Cases - Counts",
+                    titleFontColor: "#4F81BC",
+                    lineColor: "#4F81BC",
+                    labelFontColor: "#4F81BC",
+                    tickColor: "#4F81BC"
+                },
+                axisY2: {
+                    title: "Total Deaths - Counts",
+                    titleFontColor: "#C0504E",
+                    lineColor: "#C0504E",
+                    labelFontColor: "#C0504E",
+                    tickColor: "#C0504E"
+                },
+                toolTip: {
+                    shared: true
+                },
+                legend: {
+                    cursor: "pointer",
+                    itemclick: toggleDataSeries
+                },
+                data: [{
+                    type: "column",
+                    name: "Active Cases",
+                    showInLegend: true,
+                    yValueFormatString: "#,##0.# Units",
+                    dataPoints: [{
+                            label: "alabama",
+                            y: 4398
+                        }, {
+                            label: "alaska",
+                            y: 172
+                        }, {
+                            label: "arizona",
+                            y: 4268
+                        }, {
+                            label: "arkansas",
+                            y: 998
+                        }, {
+                            label: "california",
+                            y: 27173
+                        }, {
+                            label: "colorado",
+                            y: 8158
+                        }, {
+                            label: "connecticut",
+                            y: 15708
+                        }, {
+                            label: "delaware",
+                            y: 1839
+                        }, {
+                            label: "districtofcolumbia",
+                            y: 1967
+                        }, {
+                            label: "florida",
+                            y: 23843
+                        }, {
+                            label: "georgia",
+                            y: 16965
+                        }, {
+                            label: "hawaii",
+                            y: 154
+                        }, {
+                            label: "idaho",
+                            y: 1159
+                        }, {
+                            label: "illinois",
+                            y: 26391
+                        }, {
+                            label: "indiana",
+                            y: 10082
+                        }, {
+                            label: "iowa",
+                            y: 1432
+                        }, {
+                            label: "kansas",
+                            y: 1381
+                        }, {
+                            label: "kentucky",
+                            y: 2079
+                        }, {
+                            label: "louisiana",
+                            y: 22263
+                        }, {
+                            label: "maine",
+                            y: 446
+                        }, {
+                            label: "maryland",
+                            y: 11074
+                        }, {
+                            label: "massachusetts",
+                            y: 24880
+                        }, {
+                            label: "michigan",
+                            y: 27353
+                        }, {
+                            label: "minnesota",
+                            y: 974
+                        }, {
+                            label: "mississippi",
+                            y: 3822
+                        }, {
+                            label: "missouri",
+                            y: 4917
+                        }, {
+                            label: "montana",
+                            y: 173
+                        }, {
+                            label: "nebraska",
+                            y: 1092
+                        }, {
+                            label: "nevada",
+                            y: 2306
+                        }, {
+                            label: "newhampshire",
+                            y: 782
+                        }, {
+                            label: "newjersey",
+                            y: 76079
+                        }, {
+                            label: "newmexico",
+                            y: 1365
+                        }, {
+                            label: "newyork",
+                            y: 199483
+                        }, {
+                            label: "northcarolina",
+                            y: 5254
+                        }, {
+                            label: "northdakota",
+                            y: 336
+                        }, {
+                            label: "ohio",
+                            y: 8569
+                        }, {
+                            label: "oklahoma",
+                            y: 1174
+                        }, {
+                            label: "oregon",
+                            y: 1715
+                        }, {
+                            label: "pennsylvania",
+                            y: 29462
+                        }, {
+                            label: "rhodeisland",
+                            y: 4344
+                        }, {
+                            label: "southcarolina",
+                            y: 1232
+                        }, {
+                            label: "southdakota",
+                            y: 983
+                        }, {
+                            label: "tennessee",
+                            y: 3430
+                        }, {
+                            label: "texas",
+                            y: 13617
+                        }, {
+                            label: "utah",
+                            y: 2339
+                        }, {
+                            label: "vermont",
+                            y: 765
+                        }, {
+                            label: "virginia",
+                            y: 6685
+                        }, {
+                            label: "washington",
+                            y: 9127
+                        }, {
+                            label: "westvirginia",
+                            y: 544
+                        }, {
+                            label: "wisconsin",
+                            y: 3753
+                        }, {
+                            label: "wyoming",
+                            y: 204
+                        }
+
+                    ]
+                }, {
+                    type: "column",
+                    name: "Total Deaths",
+                    axisYType: "secondary",
+                    showInLegend: true,
+                    yValueFormatString: "#,##0.# Units",
+                    dataPoints: [{
+                        label: "alabama",
+                        y: 154
+                    }, {
+                        label: "alaska",
+                        y: 9
+                    }, {
+                        label: "arizona",
+                        y: 169
+                    }, {
+                        label: "arkansas",
+                        y: 38
+                    }, {
+                        label: "california",
+                        y: 1057
+                    }, {
+                        label: "colorado",
+                        y: 391
+                    }, {
+                        label: "connecticut",
+                        y: 1036
+                    }, {
+                        label: "delaware",
+                        y: 61
+                    }, {
+                        label: "districtofcolumbia",
+                        y: 91
+                    }, {
+                        label: "florida",
+                        y: 740
+                    }, {
+                        label: "georgia",
+                        y: 673
+                    }, {
+                        label: "hawaii",
+                        y: 9
+                    }, {
+                        label: "idaho",
+                        y: 43
+                    }, {
+                        label: "illinois",
+                        y: 1134
+                    }, {
+                        label: "indiana",
+                        y: 545
+                    }, {
+                        label: "iowa",
+                        y: 74
+                    }, {
+                        label: "kansas",
+                        y: 84
+                    }, {
+                        label: "kentucky",
+                        y: 137
+                    }, {
+                        label: "louisiana",
+                        y: 1267
+                    }, {
+                        label: "maine",
+                        y: 29
+                    }, {
+                        label: "maryland",
+                        y: 463
+                    }, {
+                        label: "massachusetts",
+                        y: 1404
+                    }, {
+                        label: "michigan",
+                        y: 2227
+                    }, {
+                        label: "minnesota",
+                        y: 121
+                    }, {
+                        label: "mississippi",
+                        y: 152
+                    }, {
+                        label: "missouri",
+                        y: 182
+                    }, {
+                        label: "montana",
+                        y: 10
+                    }, {
+                        label: "nebraska",
+                        y: 24
+                    }, {
+                        label: "nevada",
+                        y: 151
+                    }, {
+                        label: "newhampshire",
+                        y: 37
+                    }, {
+                        label: "newjersey",
+                        y: 4070
+                    }, {
+                        label: "newmexico",
+                        y: 51
+                    }, {
+                        label: "newyork",
+                        y: 17671
+                    }, {
+                        label: "northcarolina",
+                        y: 173
+                    }, {
+                        label: "northdakota",
+                        y: 9
+                    }, {
+                        label: "ohio",
+                        y: 418
+                    }, {
+                        label: "oklahoma",
+                        y: 136
+                    }, {
+                        label: "oregon",
+                        y: 70
+                    }, {
+                        label: "pennsylvania",
+                        y: 957
+                    }, {
+                        label: "rhodeisland",
+                        y: 137
+                    }, {
+                        label: "southcarolina",
+                        y: 116
+                    }, {
+                        label: "southdakota",
+                        y: 7
+                    }, {
+                        label: "tennessee",
+                        y: 142
+                    }, {
+                        label: "texas",
+                        y: 453
+                    }, {
+                        label: "utah",
+                        y: 23
+                    }, {
+                        label: "vermont",
+                        y: 38
+                    }, {
+                        label: "virginia",
+                        y: 258
+                    }, {
+                        label: "washington",
+                        y: 603
+                    }, {
+                        label: "westvirginia",
+                        y: 16
+                    }, {
+                        label: "wisconsin",
+                        y: 205
+                    }, {
+                        label: "wyoming",
+                        y: 2
+                    }]
+                }]
+            });
+            chart.render();
+
+            function toggleDataSeries(e) {
+                if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                } else {
+                    e.dataSeries.visible = true;
+                }
+                e.chart.render();
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <div align="center">
+        <h1>
+            <hr><a href="Main Page.html">Home</a></hr>
+        </h1>
+    </div>
+    <div id="chartContainer" style="height: 100%; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+
+</html>
